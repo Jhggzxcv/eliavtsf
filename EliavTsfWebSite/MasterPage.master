@@ -3,14 +3,55 @@
 <!DOCTYPE html>
 
 <html>
-<head runat="server">
+   <head runat="server">
+        <style>
+          table, th, td {
+              border:1px solid black;
+              border-collapse: collapse;
+           }
+       </style>
     <title></title>
     <asp:ContentPlaceHolder id="head" runat="server">
     </asp:ContentPlaceHolder>
-</head>
-<body>
-        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+  </head>
+   <body>
+    <table style=width:100%; height=500px;>
+        <tr style="background-color:black" >
+             <td> דף הבית</td>
+             <td> גלריה</td>
+             <td> אודות</td>
+             <td> הרשמה</td>
+             <td> כניסה</td>
+             <td>  מנהל</td>
+             <td> חיפוש</td>
+             <td>עדכון פרטים </td>
+             <td> יציאה</td>
+        </tr>
+         <tr style="background-color:antiquewhite">
+              <td><a href="home.aspx">דף הבית</a></td>
+              <td><a href="Gallery.aspx">גלריה</a> </td>
+              <td> <a href="aboutUs.aspx">אודות</a></td>
+              <td><a href="enrollment.aspx">הרשמה</a></td>
+              <td><a href="entry.aspx">כניסה</a></td>
+              <td>  <a href="manager.aspx">מנהל</a></td>
+              <td> <a href="search.aspx">חיפוש</a></td>
+              <td> <a href="updateDetails.aspx">עדכון פרטים</a></td>
+              <td><a href="exit.aspx">יציאה</a></td>
+
+         </tr>
+        <tr></tr>
+         <tr></tr>
+         <tr></tr>
+         <tr></tr>
+         <tr></tr>
+         <tr></tr>
+         <tr>
+            <td rowspan="6" colspan="9">
+                 <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
         
-        </asp:ContentPlaceHolder>
-</body>
+                 </asp:ContentPlaceHolder>
+           </td>
+        </tr>
+    </table>
+  </body>
 </html>
