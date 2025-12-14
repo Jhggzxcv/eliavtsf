@@ -3,9 +3,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <form>
+    <form runat="server" method="post">
          <label for="fullName">Full name:</label><br>
-         <input type="text" id="name" name="name" value=""><br>
+         <input type="text" id="name1" name="name1" value=""><br>
 
          <label for="number">telepon number:</label><br>
          <input type="text" id="number" name="number" value=""><br>
@@ -19,5 +19,11 @@
          <input type="submit" value="Submit">
  
     </form>
+    
+     <%=name %><br />
+     <%=note %><br />
+     <%=gmail %><br />
+     <%=number %><br />
+
 </asp:Content>
 

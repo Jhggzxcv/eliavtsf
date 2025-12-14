@@ -15,8 +15,8 @@
     </asp:ContentPlaceHolder>
   </head>
    <body>
-    <table style=width:100%; height=500px;>
-        <tr style="background-color:black" >
+    <table style=width:100%; height=1000px;>
+        <tr style=height=10%;background-color=snow ; color=gray >
              <td> דף הבית</td>
              <td> גלריה</td>
              <td> אודות</td>
@@ -27,7 +27,7 @@
              <td>עדכון פרטים </td>
              <td> יציאה</td>
         </tr>
-         <tr style="background-color:antiquewhite">
+         <tr style=height="10%";background-color:"antiquewhite">
               <td><a href="home.aspx">דף הבית</a></td>
               <td><a href="Gallery.aspx">גלריה</a> </td>
               <td> <a href="aboutUs.aspx">אודות</a></td>
