@@ -6,52 +6,61 @@
    <head runat="server">
         <style>
           table, th, td {
-              border:1px solid black;
+              border:0px solid black;
               border-collapse: collapse;
            }
+           .menuBtn {
+        display:inline-block;
+        padding:8px 14px;
+        margin:4px;
+        background-color:#deb887;
+        color:#000;
+        text-decoration:none;
+        border-radius:8px;
+        font-weight:bold;
+        transition:0.3s;
+    }
+
+    .menuBtn:hover {
+        background-color:#c19a6b;
+        color:white;
+        transform:scale(1.1);
+    }
        </style>
     <title></title>
     <asp:ContentPlaceHolder id="head" runat="server">
     </asp:ContentPlaceHolder>
   </head>
    <body>
-    <table style=width:100%; height=1000px;>
-        <tr style=height=10%;background-color=snow ; color=gray >
-             <td> דף הבית</td>
-             <td> גלריה</td>
-             <td> אודות</td>
-             <td> הרשמה</td>
-             <td> כניסה</td>
-             <td>  מנהל</td>
-             <td> חיפוש</td>
-             <td>עדכון פרטים </td>
-             <td> יציאה</td>
-        </tr>
-         <tr style=height="10%";background-color:"antiquewhite">
-              <td><a href="home.aspx">דף הבית</a></td>
-              <td><a href="Gallery.aspx">גלריה</a> </td>
-              <td> <a href="aboutUs.aspx">אודות</a></td>
-              <td><a href="enrollment.aspx">הרשמה</a></td>
-              <td><a href="entry.aspx">כניסה</a></td>
-              <td>  <a href="manager.aspx">מנהל</a></td>
-              <td> <a href="search.aspx">חיפוש</a></td>
-              <td> <a href="updateDetails.aspx">עדכון פרטים</a></td>
-              <td><a href="exit.aspx">יציאה</a></td>
+       <h1>האתר שלי</h1>
+    
 
-         </tr>
-        <tr></tr>
-         <tr></tr>
-         <tr></tr>
-         <tr></tr>
-         <tr></tr>
-         <tr></tr>
-         <tr>
-            <td rowspan="6" colspan="9">
-                 <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
-        
-                 </asp:ContentPlaceHolder>
-           </td>
-        </tr>
-    </table>
+   <table style="width:100%; height:1000px;">
+    
+    <!-- Menu row -->
+<tr style="height:10%; background-color:antiquewhite;">
+    <td style="text-align:center;">
+        <a class="menuBtn" href="home.aspx">דף הבית</a>
+        <a class="menuBtn" href="Gallery.aspx">גלריה</a>
+        <a class="menuBtn" href="aboutUs.aspx">אודות</a>
+        <a class="menuBtn" href="enrollment.aspx">הרשמה</a>
+        <a class="menuBtn" href="entry.aspx">כניסה</a>
+        <a class="menuBtn" href="manager.aspx">מנהל</a>
+        <a class="menuBtn" href="search.aspx">חיפוש</a>
+        <a class="menuBtn" href="updateDetails.aspx">עדכון פרטים</a>
+        <a class="menuBtn" href="exit.aspx">יציאה</a>
+    </td>
+</tr>
+
+    <!-- Content row -->
+    <tr>
+        <td style="vertical-align:top">
+            <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </td>
+    </tr>
+
+</table>
+
   </body>
 </html>
