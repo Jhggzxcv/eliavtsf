@@ -90,6 +90,7 @@
 
     </table>
 </form>
+    <%=stResult %>
 
 
 </asp:Content>
