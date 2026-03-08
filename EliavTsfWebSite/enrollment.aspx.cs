@@ -28,7 +28,7 @@ public partial class enrollment : System.Web.UI.Page
 
             MyAdoHelper.DoQuery("MyDB.mdf", strInsert);
 
-            stResult = "OK";
+            stResult = "The user has successfully registered";
 
 
         }

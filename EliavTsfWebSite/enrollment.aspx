@@ -19,6 +19,12 @@
                     <option value="051">051</option>
                     <option value="052">052</option>
                     <option value="053">053</option>
+                    <option value="054">054</option>
+                    <option value="055">055</option>
+                    <option value="056">056</option>
+                    <option value="057">057</option>
+                    <option value="058">058</option>
+                    <option value="059">059</option>
                 </select>
                 <input type="text" id="phone" name="phone" placeholder="Phone number">
             </td>
