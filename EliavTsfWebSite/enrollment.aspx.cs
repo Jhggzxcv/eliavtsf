@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 public partial class enrollment : System.Web.UI.Page
 {
-    public string stResult = "";
+    public string st = "";
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -35,13 +35,13 @@ public partial class enrollment : System.Web.UI.Page
 
             if (exists)
             {
-                stResult = "gmail" + gmail + " קיים במערכת, אנא בחר מייל אחר" + exists;
+                st = "gmail" + gmail + " קיים במערכת, אנא בחר מייל אחר" + exists;
                 // st = "משתמש קיים במערכת עם המייל הזה";
                 return;
             }
                 MyAdoHelper.DoQuery("MyDB.mdf", strInsert);
 
-            stResult = "The user has successfully registered";
+            st = "The user has successfully registered";
 
 
         }

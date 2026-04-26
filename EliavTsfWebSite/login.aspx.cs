@@ -15,10 +15,10 @@ public partial class login : System.Web.UI.Page
     {
         if (!IsPostBack) return;
 
-        string email = Request.Form["email"];
+        string gmail = Request.Form["gmail"];
         string pass = Request.Form["password"];
 
-        if (email == "orimenal@gmail.com" && pass == "manael123")
+        if (gmail == "orimenal@gmail.com" && pass == "manael123")
         {
             Session["nihol"] = "ok";
             Session["userName"] = "מנהל";
@@ -30,7 +30,7 @@ public partial class login : System.Web.UI.Page
 
             string sql =
                 "SELECT * FROM [dbo].[table] " +
-                "WHERE email = N'" + email + "' " +
+                "WHERE gmail = N'" + gmail + "' " +
                 "AND password = N'" + pass + "'";
 
 

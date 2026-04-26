@@ -1,12 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="enrollment.aspx.cs" Inherits="enrollment" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
         <h1>הרשמה</h1>
 
-<form runat="server" method="post">
+<form runat="server" method="post" onsubmit="return checkAll();">
     <table  cellpadding="8">
 
         <!-- Phone -->
@@ -96,9 +97,9 @@
 
     </table>
 </form>
-        <% if (!string.IsNullOrEmpty(stResult))
+        <% if (!string.IsNullOrEmpty(st))
         { %>
-    <div class="msg"><%= stResult %></div>
+    <div class="msg"><%= st %></div>
     <% } %>
 </div>
 

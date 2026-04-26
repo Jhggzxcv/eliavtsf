@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class Menahel : System.Web.UI.Page
+public partial class manager : System.Web.UI.Page
 {
     public string st = "";
     protected void Page_Load(object sender, EventArgs e)
@@ -33,15 +33,12 @@ public partial class Menahel : System.Web.UI.Page
 
             st += "<table border='1'>";
             st += "<tr>";
-            st += "<td> email </td>";
+            st += "<td> gmail </td>";
             st += "<td> password </td>";
             st += "<td> firstname </td>";
             st += "<td> lastname </td>";
-            st += "<td> region </td>";
-            st += "<td> fan </td>";
             st += "<td> age </td>";
-            st += "<td> reason </td>";
-            st += "<td> players </td>";
+          
 
             st += "</tr>";
 
