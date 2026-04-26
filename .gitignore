@@ -360,4 +360,4 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
-/EliavTsfWebSite/App_Data/MyDB.mdf
+#/EliavTsfWebSite/App_Data/MyDB.mdf
