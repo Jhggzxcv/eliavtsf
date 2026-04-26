@@ -11,8 +11,8 @@ public partial class enrollment : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-         if (Page.IsPostBack)
-         {
+        if (!IsPostBack) return;
+        {
                 string phone = Request.Form["phone"];
                 string password = Request.Form["password"];
                 string gmail = Request.Form["gmail"];
@@ -26,7 +26,20 @@ public partial class enrollment : System.Web.UI.Page
                 "VALUES ('" + prefix + "', '" + phone + "', '" + gmail + "', '" +
                 password + "', '" + level + "', '" + interests + "', '" + age + "')";
 
-            MyAdoHelper.DoQuery("MyDB.mdf", strInsert);
+            string sql =
+           "SELECT * FROM tUsers " +
+           "WHERE gmail = N'" + gmail + "'";
+
+            bool exists = MyAdoHelper.IsExist(sql);
+
+
+            if (exists)
+            {
+                stResult = "gmail" + gmail + " קיים במערכת, אנא בחר מייל אחר" + exists;
+                // st = "משתמש קיים במערכת עם המייל הזה";
+                return;
+            }
+                MyAdoHelper.DoQuery("MyDB.mdf", strInsert);
 
             stResult = "The user has successfully registered";
 

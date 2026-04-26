@@ -15,7 +15,11 @@
      <input type="submit" value="Submit">
  
 </form>
-    <%=st %>
+        <% if (!string.IsNullOrEmpty(st))
+        { %>
+    <div class="msg"><%= st %></div>
+    <% } %>
+</div>
 
 </asp:Content>
 

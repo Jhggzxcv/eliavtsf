@@ -96,8 +96,11 @@
 
     </table>
 </form>
-    <%=stResult %>
-
+        <% if (!string.IsNullOrEmpty(stResult))
+        { %>
+    <div class="msg"><%= stResult %></div>
+    <% } %>
+</div>
 
 </asp:Content>
 
