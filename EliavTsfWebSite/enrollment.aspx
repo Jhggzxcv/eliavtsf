@@ -1,7 +1,63 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="enrollment.aspx.cs" Inherits="enrollment" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+      
+    
+     <script  lenguage="javasctipt">
+    function checkAll() {
+        alert("1");
+        gmailErr.innerHTML = "";
+        ////
 
+        f = true;
+        if (checkGmail() == false)
+            f = false;
+            ////
+        return f;
+
+       }
+
+         function checkGmail() {
+
+             email = document.getElementById("gmail").value;
+             alert("gmail");
+             if (Gmail.length < 2 || Gmail.length > 30) {
+
+                 gmailErr.innerHTML = "ERROR";
+                 return false;
+             }
+             return true;
+         }
+
+
+         function checkAll() {
+             alert("1");
+             passwordErr.innerHTML = "";
+             ////
+
+             f = true;
+             if (checkPassword() == false)
+                 f = false;
+             ////
+             return f;
+
+         }
+
+         function checkPassword() {
+
+             password = document.getElementById("password").value;
+             alert("password");
+             if (password.length < 2 || password.length > 30) {
+
+                 passwordErr.innerHTML = "ERROR";
+                 return false;
+             }
+             return true;
+         }
+
+
+
+     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
@@ -34,11 +90,13 @@
         <tr>
             <td><label for="gmail">Gmail:</label></td>
             <td><input type="text" id="gmail" name="gmail"></td>
+            <td id="gmailErr"></td>
         </tr>
 
         <tr>
             <td><label for="password">Password:</label></td>
             <td><input type="password" id="password" name="password"></td>
+            <td id="passwordErr"></td>
         </tr>
 
         <tr>
@@ -101,7 +159,7 @@
         { %>
     <div class="msg"><%= st %></div>
     <% } %>
-</div>
+
 
 </asp:Content>
 

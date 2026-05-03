@@ -44,7 +44,7 @@
         <a class="menuBtn" href="Gallery.aspx">גלריה</a>
         <a class="menuBtn" href="aboutUs.aspx">אודות</a>
         <a class="menuBtn" href="enrollment.aspx">הרשמה</a>
-        <a class="menuBtn" href="entry.aspx">כניסה</a>
+        <a class="menuBtn" href="login.aspx">כניסה</a>
         <a class="menuBtn" href="manager.aspx">מנהל</a>
         <a class="menuBtn" href="search.aspx">חיפוש</a>
         <a class="menuBtn" href="updateDetails.aspx">עדכון פרטים</a>

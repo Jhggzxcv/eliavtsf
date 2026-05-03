@@ -7,11 +7,11 @@
 <h1>דף מנהל</h1>
   
     first name:
-   <input type="text" name="firstName" placeholder="example"/>
+   <input type="text" name="gmail" placeholder="example"/>
     <br /><br/>
     
     last name:
-   <input type="text" name="lastName" placeholder="example"/>
+   <input type="text" name="password" placeholder="example"/>
     <br /><br/>
 
     <input type="submit" value="Search"/>

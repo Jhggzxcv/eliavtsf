@@ -13,14 +13,14 @@ public partial class manager : System.Web.UI.Page
     {
         //if (!IsPostBack) return;
 
-        string fn = Request.Form["firstname"];
-        string ln = Request.Form["lastname"];
+        string fn = Request.Form["gmail"];
+        string ln = Request.Form["password"];
 
 
         string sql = "SELECT * FROM TUSERS where " +
-            "firstName LIKE N'%" + fn + "%' and "
+            "gmail LIKE N'%" + fn + "%' and "
            +
-            "lastName LIKE N'%" + ln + "%'";
+            "password LIKE N'%" + ln + "%'";
 
         DataTable dt = MyAdoHelper.ExecuteDataTable(sql);
 
@@ -35,8 +35,6 @@ public partial class manager : System.Web.UI.Page
             st += "<tr>";
             st += "<td> gmail </td>";
             st += "<td> password </td>";
-            st += "<td> firstname </td>";
-            st += "<td> lastname </td>";
             st += "<td> age </td>";
           
 
