@@ -4,58 +4,94 @@
       
     
      <script  lenguage="javasctipt">
-    function checkAll() {
-        alert("1");
-        gmailErr.innerHTML = "";
-        ////
 
-        f = true;
-        if (checkGmail() == false)
-            f = false;
-            ////
-        return f;
-
-       }
-
-         function checkGmail() {
-
-             email = document.getElementById("gmail").value;
-             alert("gmail");
-             if (Gmail.length < 2 || Gmail.length > 30) {
-
-                 gmailErr.innerHTML = "ERROR";
-                 return false;
-             }
-             return true;
-         }
-
+       
 
          function checkAll() {
-             alert("1");
+
+             let phoneErr = document.getElementById("phoneErr");
+             let LevelErr = document.getElementById("LevelErr");
+             let passwordErr = document.getElementById("passwordErr");
+             let gmailErr = document.getElementById("gmailErr");
+
+
+             phoneErr.innerHTML = "";
+             LevelErr.innerHTML = "";
              passwordErr.innerHTML = "";
-             ////
+             gmailErr.innerHTML = "";
 
-             f = true;
+             let c = true;
+
+             if (checkPhone() == false)
+                 c = false;
+
+             if (checkLevel() == false)
+                 c = false;
+
              if (checkPassword() == false)
-                 f = false;
-             ////
-             return f;
+                 c = false;
 
+             if (checkGmail() == false)
+                 c = false;
+
+             return c;
          }
 
          function checkPassword() {
 
-             password = document.getElementById("password").value;
-             alert("password");
+             let password = document.getElementById("password").value;
+
              if (password.length < 2 || password.length > 30) {
 
                  passwordErr.innerHTML = "ERROR";
                  return false;
              }
+
+             return true;
+         }
+
+         function checkGmail() {
+
+             let email = document.getElementById("gmail").value;
+
+             if (email.length < 5 || email.indexOf("@") == -1) {
+
+                 gmailErr.innerHTML = "ERROR";
+                 return false;
+             }
+
+             return true;
+         }
+
+         function checkPhone() {
+
+             let phone = document.getElementById("phone").value;
+
+             if (phone.length < 5 || phone.length > 10 || isNaN(phone)) {
+
+                 phoneErr.innerHTML = "ERROR";
+                 return false;
+             }
+
+             return true;
+         }
+
+         function checkLevel() {
+
+             let Level = document.getElementById("Level").value;
+
+             if (Level == "") {
+
+                 LevelErr.innerHTML = "ERROR";
+                 return false;
+             }
+
              return true;
          }
 
 
+
+       
 
      </script>
 </asp:Content>
@@ -83,8 +119,10 @@
                     <option value="058">058</option>
                     <option value="059">059</option>
                 </select>
+               
                 <input type="text" id="phone" name="phone" placeholder="Phone number">
             </td>
+            <td id="phoneErr"></td>
         </tr>
 
         <tr>
@@ -111,6 +149,7 @@
                 <input type="radio" id="expert" name="level" value="Expert">
                 <label for="expert">Expert</label>
             </td>
+            <td id="LevelErr"></td>
         </tr>
 
         <tr>
@@ -131,6 +170,7 @@
                 <input type="checkbox" id="music" name="interests" value="Music">
                 <label for="music">Music</label>
             </td>
+            <td id="interestsErr"></td>
         </tr>
 
         <tr>
@@ -145,6 +185,7 @@
                     <option value="50plus">50+</option>
                 </select>
             </td>
+            <td id="ageErr"></td>
         </tr>
 
         <tr>
