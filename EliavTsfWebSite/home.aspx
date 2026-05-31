@@ -5,6 +5,9 @@
 </asp:Content>
  
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    ff
+   <p>
+
+   </p>
+   <p> <a href="search.aspx">זה הקישור למצוא את הספר הבא שלך</a> </p>
 </asp:Content>
 
