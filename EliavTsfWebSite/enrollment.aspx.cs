@@ -32,6 +32,7 @@ public partial class enrollment : System.Web.UI.Page
 
             bool exists = MyAdoHelper.IsExist(sql);
 
+           
 
             if (exists)
             {
@@ -39,9 +40,14 @@ public partial class enrollment : System.Web.UI.Page
                 // st = "משתמש קיים במערכת עם המייל הזה";
                 return;
             }
-                MyAdoHelper.DoQuery("MyDB.mdf", strInsert);
+            else if (c == false)
+            {
+                st = "ERROR";
+                return;
+            }
+            MyAdoHelper.DoQuery("MyDB.mdf", strInsert);
 
-            st = "The user has successfully registered";
+            
 
 
         }

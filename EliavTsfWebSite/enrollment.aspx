@@ -9,30 +9,21 @@
 
          function checkAll() {
 
-             let phoneErr = document.getElementById("phoneErr");
-             let LevelErr = document.getElementById("LevelErr");
-             let passwordErr = document.getElementById("passwordErr");
-             let gmailErr = document.getElementById("gmailErr");
-
-
-             phoneErr.innerHTML = "";
-             LevelErr.innerHTML = "";
-             passwordErr.innerHTML = "";
-             gmailErr.innerHTML = "";
+             document.getElementById("phoneErr").innerHTML = "";
+             document.getElementById("LevelErr").innerHTML = "";
+             document.getElementById("passwordErr").innerHTML = "";
+             document.getElementById("gmailErr").innerHTML = "";
 
              let c = true;
 
-             if (checkPhone() == false)
-                 c = false;
+             if (!checkPhone()) c = false;
+             if (!checkLevel()) c = false;
+             if (!checkPassword()) c = false;
+             if (!checkGmail()) c = false;
 
-             if (checkLevel() == false)
-                 c = false;
-
-             if (checkPassword() == false)
-                 c = false;
-
-             if (checkGmail() == false)
-                 c = false;
+             if (c == false) {
+                 document.getElementById("formErr").innerHTML = "ERROR";
+             }
 
              return c;
          }
@@ -40,9 +31,9 @@
          function checkPassword() {
 
              let password = document.getElementById("password").value;
+             let passwordErr = document.getElementById("passwordErr");
 
              if (password.length < 2 || password.length > 30) {
-
                  passwordErr.innerHTML = "ERROR";
                  return false;
              }
@@ -53,9 +44,11 @@
          function checkGmail() {
 
              let email = document.getElementById("gmail").value;
+             let gmailErr = document.getElementById("gmailErr");
 
-             if (email.length < 5 || email.indexOf("@") == -1) {
+             let pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+             if (!pattern.test(email)) {
                  gmailErr.innerHTML = "ERROR";
                  return false;
              }
@@ -66,9 +59,9 @@
          function checkPhone() {
 
              let phone = document.getElementById("phone").value;
+             let phoneErr = document.getElementById("phoneErr");
 
-             if (phone.length < 5 || phone.length > 10 || isNaN(phone)) {
-
+             if (phone.length < 5 || phone.length > 10 || !/^\d+$/.test(phone)) {
                  phoneErr.innerHTML = "ERROR";
                  return false;
              }
@@ -78,18 +71,18 @@
 
          function checkLevel() {
 
-             let Level = document.getElementById("Level").value;
+             let level = document.getElementById("Level").value;
+             let levelErr = document.getElementById("LevelErr");
 
-             if (Level == "") {
-
-                 LevelErr.innerHTML = "ERROR";
+             if (level === "") {
+                 levelErr.innerHTML = "ERROR";
                  return false;
              }
 
              return true;
          }
 
-
+         
 
        
 
