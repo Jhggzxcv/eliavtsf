@@ -35,7 +35,7 @@ public partial class login : System.Web.UI.Page
 
 
 
-            DataTable dt = MyAdoHelper.ExecuteDataTable(sql);
+            DataTable dt = MyAdoHelper.ExecuteDataTable(sql, conn);
 
             if (dt.Rows.Count == 0)
             {
@@ -47,7 +47,7 @@ public partial class login : System.Web.UI.Page
             {
                 //st = "משתמש אותר בהצלחה";
                 Session["user"] = "ok";
-                Session["name"] = dt.Rows[0]["fn"];
+                Session["name"] = dt.Rows[0]["gmail"];
                 Response.Redirect("home.aspx");
 
             }

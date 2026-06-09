@@ -1,65 +1,76 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
 
 <!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head runat="server">
+    <meta charset="utf-8" />
+    <title><asp:ContentPlaceHolder id="titleContent" runat="server"></asp:ContentPlaceHolder></title>
+    
+    <style>
+        table, th, td {
+            border: 0px solid black;
+            border-collapse: collapse;
+        }
 
-<html>
-   <head runat="server">
-        <style>
-          table, th, td {
-              border:0px solid black;
-              border-collapse: collapse;
-           }
-           .menuBtn {
-        display:inline-block;
-        padding:8px 14px;
-        margin:4px;
-        background-color:#deb887;
-        color:#000;
-        text-decoration:none;
-        border-radius:8px;
-        font-weight:bold;
-        transition:0.3s;
-    }
+        .menuBtn {
+            display: inline-block;
+            padding: 8px 14px;
+            margin: 4px;
+            background-color: #deb887;
+            color: #000;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
 
-    .menuBtn:hover {
-        background-color:#c19a6b;
-        color:white;
-        transform:scale(1.1);
-    }
-       </style>
-    <title></title>
+        .menuBtn:hover {
+            background-color: #c19a6b;
+            color: white;
+            transform: scale(1.1);
+        }
+    </style>
+
     <asp:ContentPlaceHolder id="head" runat="server">
     </asp:ContentPlaceHolder>
-  </head>
-   <body>
-       <h1>האתר שלי</h1>
-    
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <h1>האתר שלי</h1>
 
-   <table style="width:100%; height:1000px;">
-    
-    <!-- Menu row -->
-<tr style="height:10%; background-color:antiquewhite;">
-    <td style="text-align:center;">
-        <a class="menuBtn" href="home.aspx">דף הבית</a>
-        <a class="menuBtn" href="Gallery.aspx">גלריה</a>
-        <a class="menuBtn" href="enrollment.aspx">הרשמה</a>
-        <a class="menuBtn" href="login.aspx">כניסה</a>
-        <a class="menuBtn" href="manager.aspx">מנהל</a>
-        <a class="menuBtn" href="search.aspx">חיפוש</a>
-        <a class="menuBtn" href="updateDetails.aspx">עדכון פרטים</a>
-        <a class="menuBtn" href="exit.aspx">יציאה</a>
-    </td>
-</tr>
+        <table style="width: 100%; height: 1000px;">
+            <tr style="height: 10%; background-color: antiquewhite;">
+                <td style="text-align: center;">
+                    
+                    <a class="menuBtn" href="home.aspx">דף הבית</a>
 
-    <!-- Content row -->
-    <tr>
-        <td style="vertical-align:top">
-            <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
-            </asp:ContentPlaceHolder>
-        </td>
-    </tr>
+                    <% if (Session["nihol"] != null && Session["nihol"].ToString() == "ok") { %>
+                        <a class="menuBtn" href="search.aspx">חיפוש</a>
+                        <a class="menuBtn" href="manager.aspx">מנהל</a>
+                        <asp:LinkButton ID="lnkLogoutAdmin" runat="server" OnClick="lnkLogout_Click" CssClass="menuBtn">יציאה</asp:LinkButton>
 
-</table>
+                    <% } else if (Session["user"] != null && Session["user"].ToString() == "ok") { %>
+                        <a class="menuBtn" href="search.aspx">חיפוש</a>
+                        <asp:LinkButton ID="lnkLogoutUser" runat="server" OnClick="lnkLogout_Click" CssClass="menuBtn">יציאה</asp:LinkButton>
 
-  </body>
+                    <% } else { %>
+                        <a class="menuBtn" href="enrollment.aspx">הרשמה</a>
+                        <a class="menuBtn" href="login.aspx">כניסה</a>
+                    <% } %>
+
+                </td>
+            </tr>
+
+            <tr>
+                <td style="vertical-align: top; padding: 20px;">
+                    <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+    </form>
+</body>
 </html>

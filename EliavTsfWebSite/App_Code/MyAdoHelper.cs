@@ -103,7 +103,7 @@ public class MyAdoHelper
     /// </summary>
     /// <param name="sql">שאילתת אחזור לביצוע כמחרוזת</param>
     /// <returns>אובייקט טבלה המכיל את תוצאות החיפוש</returns>
-    public static DataTable ExecuteDataTable(string sql)
+    public static DataTable ExecuteDataTable(string sql, SqlConnection conn)
     {
         SqlConnection conn = ConnectToDb();
         conn.Open();
@@ -122,7 +122,7 @@ public class MyAdoHelper
     /// <returns>טבלה כמחרוזת להצגה בדפדפן</returns>
     public static string printDataTable(string fileName,  string sql)
     {
-        DataTable dt = ExecuteDataTable(sql);
+        DataTable dt = ExecuteDataTable(sql, conn);
 
         string printStr = "<table border='1'>";
 

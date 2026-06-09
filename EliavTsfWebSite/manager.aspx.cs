@@ -1,52 +1,42 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 public partial class manager : System.Web.UI.Page
 {
     public string st = "";
+
     protected void Page_Load(object sender, EventArgs e)
     {
-        //if (!IsPostBack) return;
+        // חסימת אבטחה קריטית - משתמש שאינו מנהל נזרק לדף ההתחברות
+        if (Session["nihol"] == null || Session["nihol"].ToString() != "ok")
+        {
+            Response.Redirect("login.aspx");
+            return;
+        }
 
-        string fn = Request.Form["gmail"];
-        string ln = Request.Form["password"];
-
-
-        string sql = "SELECT * FROM TUSERS where " +
-            "gmail LIKE N'%" + fn + "%' and "
-           +
-            "password LIKE N'%" + ln + "%'";
-
-        DataTable dt = MyAdoHelper.ExecuteDataTable(sql);
+        // שליפת רשימת המשתמשים כולה להצגה בטבלה
+        string sql = "SELECT prefix, phone, gmail, level, interests, age FROM tUsers";
+        DataTable dt = MyAdoHelper.ExecuteDataTable(sql, conn);
 
         if (dt.Rows.Count == 0)
         {
-            st = "אין נתנוים";
+            st = "<p>אין כרגע משתמשים רשומים במסד הנתונים.</p>";
         }
         else
         {
-
-            st += "<table border='1'>";
-            st += "<tr>";
-            st += "<td> gmail </td>";
-            st += "<td> password </td>";
-            st += "<td> age </td>";
-          
-
-            st += "</tr>";
+            // בנייה דינמית של טבלת ה-HTML לתוך משתנה המחרוזת הציבורי st
+            st = "<table>";
+            st += "<tr><th>קידומת</th><th>טלפון</th><th>דואר אלקטרוני</th><th>רמת קריאה</th><th>תחום עניין</th><th>גיל</th></tr>";
 
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 st += "<tr>";
-                for (int k = 0; k < dt.Columns.Count; k++)
-                {
-                    st += "<td>" + dt.Rows[i][k] + "</td>";
-                }
+                st += "<td>" + dt.Rows[i]["prefix"] + "</td>";
+                st += "<td>" + dt.Rows[i]["phone"] + "</td>";
+                st += "<td>" + dt.Rows[i]["gmail"] + "</td>";
+                st += "<td>" + dt.Rows[i]["level"] + "</td>";
+                st += "<td>" + dt.Rows[i]["interests"] + "</td>";
+                st += "<td>" + dt.Rows[i]["age"] + "</td>";
                 st += "</tr>";
             }
             st += "</table>";

@@ -4,7 +4,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
-    <form runat="server" method="post">
+    
 
      <label for="gmail">gmail:</label><br>
      <input type="text" id="gmail" name="gmail" value=""><br>
@@ -14,7 +14,7 @@
 
      <input type="submit" value="Submit">
  
-</form>
+
         <% if (!string.IsNullOrEmpty(st))
         { %>
     <div class="msg"><%= st %></div>
