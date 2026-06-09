@@ -183,7 +183,7 @@
 
         <tr>
             <td colspan="2" style="text-align:center;">
-                <input type="submit" value="Submit"onclick="return checkAll();"runat="server"/>
+                <input type="submit" value="Submit" onclick="return checkAll();" runat="server" />
             </td>
         </tr>
 

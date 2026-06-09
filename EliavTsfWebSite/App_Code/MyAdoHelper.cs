@@ -13,45 +13,31 @@ using System.Data.SqlClient;
 
 /// <summary>
 /// Summary description for MyAdoHelper
-/// פעולות עזר לשימוש במסד נתונים  מסוג 
-/// SQL SERVER
-///  App_Data המסד ממוקם בתקיה 
+/// פעולות עזר לשימוש במסד נתונים מסוג SQL SERVER
 /// </summary>
-
 public class MyAdoHelper
 {
-    private const String dbFileName = "~/app_data/MyDB.mdf"; //<ENTER YOUR DATABASE (.mdf) FILE NAME HERE>";
-    
+    // נתיב קובץ הדיביי המעודכן לפרויקט שלך
+    private const String dbFileName = "~/app_data/MyDB.mdf";
 
     public MyAdoHelper()
     {
-        //
-        // TODO: Add constructor logic here
-        //
     }
 
     /// <summary>
-    /// הפעולה מקבל נתיב לקובץ בסיס הנתונים ויוצרת קשר אל בסיס הנתונים
+    /// יוצרת קשר אל בסיס הנתונים ומחזירה את אובייקט החיבור
     /// </summary>
-    /// <returns>קישור אל בסיס הנתונים</returns>
     public static SqlConnection ConnectToDb()
     {
-        string path = HttpContext.Current.Server.MapPath(dbFileName);//מיקום מסד בפורוייקט
+        string path = HttpContext.Current.Server.MapPath(dbFileName);
         string connStr = string.Format(@"Data Source=(LocalDB)\MSSQLLocalDB; AttachDbFilename={0}; Integrated Security = True", path);
-        //string connString = string.Format(@"server=(LocalDB)\v11.0;AttachDbFilename={0};Integrated Security=True", path);
-
-        //        string connString = @"Data Source=.\SQLEXPRESS;AttachDbFilename=" +
-        //                             path +
-        //                             ";Integrated Security=True;User Instance=True";
         SqlConnection conn = new SqlConnection(connStr);
         return conn;
     }
 
     /// <summary>
-    /// To Execute update / insert / delete queries
-    ///  הפעולה מקבלת משפט לביצוע ומבצעת את הפעולה על המסד
+    /// ביצוע שאילתות עדכון / הוספה / מחיקה (עם שני פרמטרים)
     /// </summary>
-    /// <param name="sql">שאילת לביצוע כמחרוזת מחיקה/ הוספה/ עדכון</param>
     public static void DoQuery(string fileName, string sql)
     {
         SqlConnection conn = ConnectToDb();
@@ -63,14 +49,23 @@ public class MyAdoHelper
     }
 
     /// <summary>
-    /// To Execute update / insert / delete queries
-    ///  הפעולה מקבלת משפט לביצוע ומחזירה את מספר השורות שהושפעו מביצוע הפעולה
+    /// תיקון: מימוש המתודה עם פרמטר אחד עבור דף ההרשמה
     /// </summary>
-    /// <param name="sql">שאילת לביצוע כמחרוזת מחיקה/ הוספה/ עדכון</param>
-    /// <returns>מספר השורות שהושפעו מביצוע הפעולה</returns>
+    public static void DoQuery(string sql)
+    {
+        SqlConnection conn = ConnectToDb();
+        conn.Open();
+        SqlCommand com = new SqlCommand(sql, conn);
+        com.ExecuteNonQuery();
+        com.Dispose();
+        conn.Close();
+    }
+
+    /// <summary>
+    /// מריצה שאילתה ומחזירה את מספר השורות שהושפעו
+    /// </summary>
     public static int RowsAffected(string sql)
     {
-
         SqlConnection conn = ConnectToDb();
         conn.Open();
         SqlCommand com = new SqlCommand(sql, conn);
@@ -80,55 +75,59 @@ public class MyAdoHelper
     }
 
     /// <summary>
-    /// הפעולה מקבלת משפט לחיפוש ערך - מחזירה אמת אם הערך נמצא ושקר אחרת
+    /// מחזירה אמת אם הרשומה קיימת ושקר אחרת
     /// </summary>
-    /// <param name="sql">שאילתת אחזור לביצוע כמחרוזת</param>
-    /// <returns>אמת אם הנתונים קיימים ושקר אחרת</returns>
     public static bool IsExist(string sql)
     {
-
         SqlConnection conn = ConnectToDb();
         conn.Open();
         SqlCommand com = new SqlCommand(sql, conn);
         SqlDataReader data = com.ExecuteReader();
-        bool found;
-        found = (bool)data.Read();// אם יש נתונים לקריאה יושם אמת אחרת שקר - הערך קיים במסד הנתונים
+        bool found = data.Read();
         conn.Close();
         return found;
-
     }
 
     /// <summary>
-    /// הפעולה מקבלת משפט לחיפוש ערך - מחזירה אובייקט המכיל טבלה של התוצאות
+    /// תיקון: מימוש מלא למתודה עם פרמטר אחד המשמשת את דפי הלוגין והמנהל שלך
     /// </summary>
-    /// <param name="sql">שאילתת אחזור לביצוע כמחרוזת</param>
-    /// <returns>אובייקט טבלה המכיל את תוצאות החיפוש</returns>
-    public static DataTable ExecuteDataTable(string sql, SqlConnection conn)
+    public static DataTable ExecuteDataTable(string sql)
     {
-         conn = ConnectToDb();
+        SqlConnection conn = ConnectToDb();
         conn.Open();
         SqlDataAdapter tableAdapter = new SqlDataAdapter(sql, conn);
         DataTable dt = new DataTable();
         tableAdapter.Fill(dt);
+        conn.Close(); // חובה לסגור חיבור כדי למנוע נעילת הדיביי
         return dt;
     }
 
     /// <summary>
-    /// הפעולה מקבלת משפט לחיפוש ערך - מחזירה מחרוזת המכילה טבלה בפורמט
-    /// html
-    /// המכילה את נתוני הטבלה מבסיס הנתונים
+    /// מתודה עם שני פרמטרים (במידה ויש בה צורך במקומות אחרים)
     /// </summary>
-    /// <param name="sql">שאילתת אחזור לביצוע כמחרוזת</param>
-    /// <returns>טבלה כמחרוזת להצגה בדפדפן</returns>
-    /// 
-    public static string printDataTable(string fileName,  string sql)
+    public static DataTable ExecuteDataTable(string sql, SqlConnection conn)
     {
-        DataTable dt = ExecuteDataTable(sql,conn);
+        conn = ConnectToDb();
+        conn.Open();
+        SqlDataAdapter tableAdapter = new SqlDataAdapter(sql, conn);
+        DataTable dt = new DataTable();
+        tableAdapter.Fill(dt);
+        conn.Close();
+        return dt;
+    }
+
+    /// <summary>
+    /// תיקון שורה 126: קריאה למתודה הממומשת ללא העברת משתנה 'conn' חסר
+    /// </summary>
+    public static string printDataTable(string fileName, string sql)
+    {
+        // קריאה למתודה התקינה שמנהלת את החיבור בעצמה
+        DataTable dt = ExecuteDataTable(sql);
 
         string printStr = "<table border='1'>";
 
         foreach (DataRow row in dt.Rows)
-        {        
+        {
             printStr += "<tr>";
             foreach (object myItemArray in row.ItemArray)
             {
@@ -147,24 +146,18 @@ public class MyAdoHelper
 
         return printStr + "<br/>";
     }
+
+    /// <summary>
+    /// החזרת ערך בודד מהמסד (לדוגמה COUNT, MAX וכדומה)
+    /// </summary>
     public static object GetScalar(string sql)
     {
-        SqlConnection conn = MyAdoHelper.ConnectToDb();
+        SqlConnection conn = ConnectToDb();
         conn.Open();
         SqlCommand comm = new SqlCommand(sql, conn);
         object tmp = comm.ExecuteScalar();
         comm.Dispose();
         conn.Close();
         return tmp;
-    }
-
-    public static void DoQuery(string strInsert)
-    {
-        throw new NotImplementedException();
-    }
-
-    public static DataTable ExecuteDataTable(string sql)
-    {
-        throw new NotImplementedException();
     }
 }
