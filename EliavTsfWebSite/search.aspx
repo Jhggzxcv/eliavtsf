@@ -3,5 +3,12 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-</asp:Content>
+    <p>
+        זה הדף שבו תוכלו למצוא את הספר הבא שלכם!<br>
+    </p>
+        <% if (!string.IsNullOrEmpty(st))
+    { %>
+<div class="msg"><%= st %></div>
+<% } %>
 
+</asp:Content>

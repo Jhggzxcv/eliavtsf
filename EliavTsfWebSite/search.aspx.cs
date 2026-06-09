@@ -34,7 +34,7 @@ public partial class search : System.Web.UI.Page
 
         st = "התקבלו נתונים (" + interests + " + " + level + "), אך לא נמצא ספר מתאים בקוד.";
 
-        // --- קטגוריית מחשבים ---
+        // --- קטגוריית מחשבים (שימוש ב-Contains במקום ==) ---
         if (cleanedInterests.Contains("computers") && cleanedLevel == "beginner") st = "כדאי לך לקרוא את הספר מבוא למדעי המחשב";
         if (cleanedInterests.Contains("computers") && cleanedLevel == "intermediate") st = "כדאי לך לקרוא את הספר מדעי המחשב אלגוריתמים";
         if (cleanedInterests.Contains("computers") && cleanedLevel == "expert") st = "כדאי לך לקרוא את הספר התעשייה של הבינה המלאכותית";

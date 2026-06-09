@@ -105,7 +105,7 @@ public class MyAdoHelper
     /// <returns>אובייקט טבלה המכיל את תוצאות החיפוש</returns>
     public static DataTable ExecuteDataTable(string sql, SqlConnection conn)
     {
-        SqlConnection conn = ConnectToDb();
+         conn = ConnectToDb();
         conn.Open();
         SqlDataAdapter tableAdapter = new SqlDataAdapter(sql, conn);
         DataTable dt = new DataTable();
@@ -120,9 +120,10 @@ public class MyAdoHelper
     /// </summary>
     /// <param name="sql">שאילתת אחזור לביצוע כמחרוזת</param>
     /// <returns>טבלה כמחרוזת להצגה בדפדפן</returns>
+    /// 
     public static string printDataTable(string fileName,  string sql)
     {
-        DataTable dt = ExecuteDataTable(sql, conn);
+        DataTable dt = ExecuteDataTable(sql,conn);
 
         string printStr = "<table border='1'>";
 
@@ -157,4 +158,13 @@ public class MyAdoHelper
         return tmp;
     }
 
+    public static void DoQuery(string strInsert)
+    {
+        throw new NotImplementedException();
+    }
+
+    public static DataTable ExecuteDataTable(string sql)
+    {
+        throw new NotImplementedException();
+    }
 }

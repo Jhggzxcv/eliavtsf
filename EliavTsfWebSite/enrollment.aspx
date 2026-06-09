@@ -92,7 +92,7 @@
 
         <h1>הרשמה</h1>
 
-<form runat="server" method="post" onsubmit="return checkAll();">
+
     <table  cellpadding="8">
 
         <!-- Phone -->
@@ -183,12 +183,12 @@
 
         <tr>
             <td colspan="2" style="text-align:center;">
-                <input type="submit" value="Submit">
+                <input type="submit" value="Submit"onclick="return checkAll();"runat="server"/>
             </td>
         </tr>
 
     </table>
-</form>
+
         <% if (!string.IsNullOrEmpty(st))
         { %>
     <div class="msg"><%= st %></div>

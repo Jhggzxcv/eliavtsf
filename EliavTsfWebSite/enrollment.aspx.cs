@@ -12,44 +12,47 @@ public partial class enrollment : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack) return;
+
+        string phone = Request.Form["phone"];
+        string password = Request.Form["password"];
+        string gmail = Request.Form["gmail"];
+        string prefix = Request.Form["prefix"];
+        string level = Request.Form["level"];
+        string interests = Request.Form["interests"];
+        string age = Request.Form["age"];
+
+        string sql = "SELECT * FROM tUsers WHERE gmail = N'" + gmail + "'";
+        bool exists = MyAdoHelper.IsExist(sql);
+
+        if (exists)
         {
-                string phone = Request.Form["phone"];
-                string password = Request.Form["password"];
-                string gmail = Request.Form["gmail"];
-                string prefix = Request.Form["prefix"];
-                string level = Request.Form["level"];
-                string interests = Request.Form["interests"];
-                string age = Request.Form["age"];
-
-            string strInsert =
-                "INSERT INTO tUsers  " +
-                "VALUES ('" + prefix + "', '" + phone + "', '" + gmail + "', '" +
-                password + "', '" + level + "', '" + interests + "', '" + age + "')";
-
-            string sql =
-           "SELECT * FROM tUsers " +
-           "WHERE gmail = N'" + gmail + "'";
-
-            bool exists = MyAdoHelper.IsExist(sql);
-
-           
-
-            if (exists)
-            {
-                st = "gmail" + gmail + " קיים במערכת, אנא בחר מייל אחר" + exists;
-                // st = "משתמש קיים במערכת עם המייל הזה";
-                return;
-            }
-            else if (c == false)
-            {
-                st = "ERROR";
-                return;
-            }
-            MyAdoHelper.DoQuery("MyDB.mdf", strInsert);
-
-            
-
-
+            st = "משתמש קיים במערכת עם המייל הזה. אנא בחר מייל אחר.";
+            return;
         }
+
+        if (checkAll())
+        {
+            string strInsert = "INSERT INTO tUsers VALUES ('" + prefix + "', '" + phone + "', '" + gmail + "', '" + password + "', '" + level + "', '" + interests + "', '" + age + "')";
+            MyAdoHelper.DoQuery(strInsert);
+
+            st = "The user has successfully registered";
+            Session["user"] = "ok";
+            Session["userName"] = "רשום";
+
+            // עדכון: שמירה בסשן לטובת דף החיפוש
+            Session["userInterests"] = interests;
+            Session["userLevel"] = level;
+
+            Response.Redirect("search.aspx?interests=" + interests + "&level=" + level);
+        }
+        else
+        {
+            st = "אירעה שגיאה בבדיקת הנתונים.";
+        }
+    }
+
+    private bool checkAll()
+    {
+        return true;
     }
 }
