@@ -46,7 +46,7 @@ public partial class search : System.Web.UI.Page
 
         // --- קטגוריית פוליטיקה ---
         if (cleanedInterests.Contains("politics") && cleanedLevel == "beginner") st = "כדאי לך לקרוא את הספר דמוקרטיה בשישים שניות";
-        if (cleanedInterests.Contains("politics") && cleanedLevel == "intermediate") st = "כדאי לך לקרוא את הספר ההיסטוריה הדיומאית של הפוליטיקה";
+        if (cleanedInterests.Contains("politics") && cleanedLevel == "intermediate") st = "כדאי לך לקרוא את הספר סיפורה של הפלויטיקה הישראלית";
         if (cleanedInterests.Contains("politics") && cleanedLevel == "expert") st = "כדאי לך לקרוא את הספר האמנה החברתית";
 
         // --- קטגוריית ספורט ---
